@@ -32,23 +32,24 @@
 
 <main>
   <h1 class="title text-center">druskii128</h1>
-  <p class="text-center">conner was here</p>
-  <br><br>
+  <p class="text-center" style="color: #A59D84; font-size: 1.1rem; margin-bottom: 10px; font-weight: 500;">Your ultimate gaming destination</p>
   
 <nav>
     <div class="nav-container">
       <div class="search-container">
-        <input class="search-box" id="search-box" type="search" onkeyup="searching(this)" onfocus="fun(this)" placeholder="Search for Games">
+        <input class="search-box" id="search-box" type="search" onkeyup="searching(this)" onfocus="fun(this)" placeholder="Search for your favorite games...">
         <button class="clear-search" id="clear-search" onclick="clearSearch()" title="Clear search">×</button>
         <div class="search-results" id="search-results"></div>
       </div>
     </div>
   </nav>
+  
+  <h2 class="text-center" style="color: #A59D84; font-size: 1.8rem; margin: 30px 0 25px; font-family: 'Space Grotesk', sans-serif; font-weight: 700;">⭐ Featured Games</h2>
 
-  <!-- games start here, starting with the most popular ones :3 -->
+  <!-- Featured games section -->
   <script src="JS/search.js"></script>
 
-  <div id="games" class="flex-container">
+  <div id="games" class="flex-container" style="margin-bottom: 50px;">
 
     <a href="projects/bitlife/index.html" class="game-link">
       <div class="game-tile-popular">
@@ -85,7 +86,12 @@
       </div>
     </a>
 
-    <!-- now for the rest of the games, they're in alphabetical order -->
+  </div>
+  
+  <h2 class="text-center" style="color: #A59D84; font-size: 1.8rem; margin: 50px 0 25px; font-family: 'Space Grotesk', sans-serif; font-weight: 700;">🎮 All Games</h2>
+  
+  <div class="flex-container" style="margin-bottom: 50px;">
+    <!-- All games in alphabetical order -->
     <a href="projects/2048/index.html" class="game-link container">
               <div class="game-tile">
                   <img class="game-icon" src="projects/2048/thumb.png" alt="icon" width="360" height="360" />
@@ -450,11 +456,11 @@
               </div>
           </a>
 
-		</div>
+  </div>
 		
-					<div><h1 id="saras-cooking-class" class="text-center">Sara's Cooking Class</h1></div>
+  <h2 id="saras-cooking-class" class="text-center" style="color: #A59D84; font-size: 1.8rem; margin: 50px 0 25px; font-family: 'Space Grotesk', sans-serif; font-weight: 700;">👩‍🍳 Sara's Cooking Class</h2>
 				
-		      <div class="flex-container">
+  <div class="flex-container">
 
           <a href="projects/gingerbread-house/index.html" class="game-link container">
               <div class="game-tile">
