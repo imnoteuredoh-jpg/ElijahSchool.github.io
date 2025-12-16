@@ -25,6 +25,7 @@
     <a class="active" href="index.html">home</a>
     <div class="topnav-right">
       <a href="https://forms.gle/eRT37jLokfETBNUs6">request</a>
+      <a href="#" id="changelog-btn">changelog</a>
       <span>last updated: 12/16/25 - ui redesign</span>
     </div>
   </nav>
@@ -475,9 +476,25 @@
   </div>
 </main>
 
+<!-- Changelog Modal -->
+<div id="changelog-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Changelog</h2>
+      <span class="modal-close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div id="changelog-list">
+        <div class="loading">Loading changelog...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="JS/hide.js"></script>
 <script src="JS/clock.js"></script>
 <script src="JS/search.js"></script>
 <script src="JS/size.js"></script>
+<script src="JS/changelog.js"></script>
 </body>
 </html>
