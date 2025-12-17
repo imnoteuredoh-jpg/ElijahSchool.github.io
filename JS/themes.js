@@ -124,42 +124,42 @@ const themes = [
     }
   },
   {
-    name: 'Untitled',
-    id: 'untitled',
+    name: 'Pride',
+    id: 'pride',
     colors: {
       // Primary colors
-      primary: '#ff6b6b',
-      primaryDark: '#ee5a52',
-      secondary: '#4ecdc4',
-      accent: '#ffe66d',
-      success: '#95e1d3',
+      primary: '#E40303',       // Red (Life)
+      primaryDark: '#FF8C00',   // Orange (Healing)
+      secondary: '#FFED00',     // Yellow (Sunlight)
+      accent: '#008026',        // Green (Nature)
+      success: '#2497D4',
       
       // Background colors
-      bgDark: '#2d3561',
-      bgCard: '#3d4575',
-      bgElevated: '#4d5585',
-      bgTopbar: '#1a1f3a',
-      bgModal: '#1a1f3a',
-      bgModalHeader: '#252a4a',
+      bgDark: '#1A0B2E',        // Deep Midnight
+      bgCard: '#2D1B4D',        // Dark Violet
+      bgElevated: '#3E2A61',    // Medium Violet
+      bgTopbar: '#120721',      // Near Black
+      bgModal: '#1A0B2E',
+      bgModalHeader: '#2D1B4D',
       
       // Text colors
-      textPrimary: '#f7fff7',
-      textSecondary: '#a8dadc',
-      textMuted: '#6c757d',
-      textTopbar: '#a8dadc',
-      textTitle: '#ffe66d',
-      textGameCard: '#f7fff7',
-      textModal: '#a8dadc',
-      textModalHeader: '#ffe66d',
+      textPrimary: '#FFFFFF',
+      textSecondary: '#E0B1FF', // Soft Lavender
+      textMuted: '#9D89B3',
+      textTopbar: '#FFFFFF',
+      textTitle: '#FFED00',     // Yellow Title for pop
+      textGameCard: '#FFFFFF',
+      textModal: '#E0B1FF',
+      textModalHeader: '#FFED00',
       
       // Border colors
-      borderModal: '#4ecdc4',
-      borderTopbar: '#4d5585',
+      borderModal: '#732982',   // Purple (Spirit)
+      borderTopbar: '#3E2A61',
       
       // Search bar colors
-      bgSearchBar: '#3d4575',
-      bgSearchBarFocus: '#4d5585',
-      borderSearchBar: '#4ecdc4'
+      bgSearchBar: '#2D1B4D',
+      bgSearchBarFocus: '#3E2A61',
+      borderSearchBar: '#2497D4'
     }
   }
 ];
