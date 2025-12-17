@@ -139,11 +139,15 @@
               // Extract gameId from the game's path
               const pathMatch = game.path?.match(/\/projects\/([^\/]+)\//);
               if (pathMatch) {
-                gamesMap[pathMatch[1]] = game;
-              }
-              // Also handle subway-surfers special case
-              if (game.path?.includes('subway-surfers')) {
-                gamesMap['subway-surfers'] = game;
+                const extractedGameId = pathMatch[1];
+                gamesMap[extractedGameId] = game;
+                
+                // Handle subway-surfers special case: both subway-surfers-san-francisco and
+                // subway-surfers-unity should be accessible as 'subway-surfers' since that's
+                // what the presence tracking uses
+                if (extractedGameId.startsWith('subway-surfers')) {
+                  gamesMap['subway-surfers'] = game;
+                }
               }
             }
           });
@@ -187,7 +191,7 @@
           }).join('');
         }).catch(err => {
           console.error('Error loading users:', err);
-          usersList.innerHTML = '<div style="color: #999999; font-size: 0.875rem;">error loading users</div>';
+          usersList.innerHTML = '<div style="color: #999999; font-size: 0.875rem;">unable to load online users. please try again later.</div>';
         });
       });
 
