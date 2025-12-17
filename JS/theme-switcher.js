@@ -42,6 +42,11 @@ function applyTheme(themeId) {
   root.style.setProperty('--border-modal', theme.colors.borderModal);
   root.style.setProperty('--border-topbar', theme.colors.borderTopbar);
   
+  // Search bar colors
+  root.style.setProperty('--bg-search-bar', theme.colors.bgSearchBar);
+  root.style.setProperty('--bg-search-bar-focus', theme.colors.bgSearchBarFocus);
+  root.style.setProperty('--border-search-bar', theme.colors.borderSearchBar);
+  
   // Update dropdown to show current selection
   const dropdown = document.getElementById('theme-dropdown');
   if (dropdown) {

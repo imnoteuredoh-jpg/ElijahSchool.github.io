@@ -38,6 +38,10 @@
  * 
  * borderModal: Modal border color
  * borderTopbar: Top navigation bar border color
+ * 
+ * bgSearchBar: Search bar background color
+ * bgSearchBarFocus: Search bar background when focused
+ * borderSearchBar: Search bar border color
  */
 
 const themes = [
@@ -72,7 +76,12 @@ const themes = [
       
       // Border colors
       borderModal: '#333333',
-      borderTopbar: '#1a1a1a'
+      borderTopbar: '#1a1a1a',
+      
+      // Search bar colors
+      bgSearchBar: '#0a0a0a',
+      bgSearchBarFocus: '#0a0a0a',
+      borderSearchBar: '#1a1a1a'
     }
   },
   {
@@ -106,7 +115,12 @@ const themes = [
       
       // Border colors
       borderModal: '#cccccc',
-      borderTopbar: '#e5e5e5'
+      borderTopbar: '#e5e5e5',
+      
+      // Search bar colors
+      bgSearchBar: '#f5f5f5',
+      bgSearchBarFocus: '#ffffff',
+      borderSearchBar: '#e5e5e5'
     }
   },
   {
@@ -140,7 +154,12 @@ const themes = [
       
       // Border colors
       borderModal: '#4ecdc4',
-      borderTopbar: '#4d5585'
+      borderTopbar: '#4d5585',
+      
+      // Search bar colors
+      bgSearchBar: '#3d4575',
+      bgSearchBarFocus: '#4d5585',
+      borderSearchBar: '#4ecdc4'
     }
   }
 ];

@@ -31,6 +31,9 @@
   --text-modal-header: #ffffff;
   --border-modal: #333333;
   --border-topbar: #1a1a1a;
+  --bg-search-bar: #0a0a0a;
+  --bg-search-bar-focus: #0a0a0a;
+  --border-search-bar: #1a1a1a;
 }
 
 body {
@@ -220,9 +223,9 @@ main {
   width: 100%;
   max-width: 560px;
   padding: 14px 48px 14px 20px;
-  border: 1px solid #1a1a1a;
+  border: 1px solid var(--border-search-bar);
   border-radius: 12px;
-  background: #0a0a0a;
+  background: var(--bg-search-bar);
   color: var(--text-primary);
   font-size: 0.9375rem;
   font-weight: 400;
@@ -237,7 +240,7 @@ main {
 }
 
 .search-box:focus {
-  background: var(--bg-card);
+  background: var(--bg-search-bar-focus);
   box-shadow: 0 0 0 2px var(--primary);
   border-color: var(--primary);
 }
