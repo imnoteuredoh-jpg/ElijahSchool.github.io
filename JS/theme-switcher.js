@@ -50,7 +50,7 @@ function applyTheme(themeId) {
   // Handle background image for Pride theme
   const body = document.body;
   if (themeId === 'pride') {
-    body.style.backgroundImage = 'url("bg-pride.png")';
+    body.style.backgroundImage = 'url("pridebg.png")';
     body.style.backgroundSize = 'cover';
     body.style.backgroundPosition = 'center';
     body.style.backgroundRepeat = 'no-repeat';
