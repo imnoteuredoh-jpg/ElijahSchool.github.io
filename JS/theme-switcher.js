@@ -47,6 +47,22 @@ function applyTheme(themeId) {
   root.style.setProperty('--bg-search-bar-focus', theme.colors.bgSearchBarFocus);
   root.style.setProperty('--border-search-bar', theme.colors.borderSearchBar);
   
+  // Handle background image for Pride theme
+  const body = document.body;
+  if (themeId === 'pride') {
+    body.style.backgroundImage = 'url("bg-pride.png")';
+    body.style.backgroundSize = 'cover';
+    body.style.backgroundPosition = 'center';
+    body.style.backgroundRepeat = 'no-repeat';
+    body.style.backgroundAttachment = 'fixed';
+  } else {
+    body.style.backgroundImage = 'none';
+    body.style.backgroundSize = '';
+    body.style.backgroundPosition = '';
+    body.style.backgroundRepeat = '';
+    body.style.backgroundAttachment = '';
+  }
+  
   // Update dropdown to show current selection
   const dropdown = document.getElementById('theme-dropdown');
   if (dropdown) {
