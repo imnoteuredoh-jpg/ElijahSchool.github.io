@@ -696,7 +696,7 @@ a.active::before {
   }
 }
 
-.modal-content {
+.modal .modal-content {
   background: var(--bg-modal);
   margin: 5% auto;
   padding: 0;
@@ -917,7 +917,7 @@ a.active::before {
 .loading-overlay.active {
   display: block;
 }
-  .modal-content {
+  .modal .modal-content {
     width: 95%;
     margin: 10% auto;
   }
@@ -967,7 +967,7 @@ a.active::before {
   display: flex;
 }
 
-.modal-content {
+#online-users-modal .modal-content {
   background: var(--bg-modal);
   border: 1px solid var(--border-modal);
   border-radius: 12px;
