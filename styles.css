@@ -905,3 +905,86 @@ a.active::before {
     width: 100%;
   }
 }
+
+/* Modal Styles */
+#online-users-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  font-family: 'inter', arial, sans-serif;
+}
+
+#online-users-modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #000000;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 20px;
+  position: relative;
+}
+
+#close-modal-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+#close-modal-btn:hover {
+  opacity: 1;
+}
+
+.modal-header-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+#users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-card {
+  background: #1a1a1a;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  border-left: 3px solid #2ecc71;
+}
+
+.user-card strong {
+  color: #ffffff;
+}
+
+.user-card .user-ip {
+  color: #999999;
+  margin-top: 4px;
+}
+
+.user-card .user-location {
+  color: #999999;
+  margin-top: 2px;
+}
