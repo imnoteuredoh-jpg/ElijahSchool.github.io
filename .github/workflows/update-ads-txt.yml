@@ -15,14 +15,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Download ads.txt
-        # REPLACE [YOUR_DOMAIN].com BELOW WITH YOUR ACTUAL DOMAIN
-        run: curl -L https://srv.adstxtmanager.com/19390/druskii128.github.io > ads.txt
-
-      - name: Commit and Push changes
+      # Note: ads.txt is now managed manually for Google AdSense
+      # If you need to update it, edit the ads.txt file directly
+      - name: Verify ads.txt exists
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add ads.txt
-          # Only commit if there are changes
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update ads.txt from Ezoic" && git push)
+          if [ ! -f ads.txt ]; then
+            echo "google.com, pub-9261158347206771, DIRECT, f08c47fec0942fa0" > ads.txt
+            git config --global user.name 'GitHub Action'
+            git config --global user.email 'action@github.com'
+            git add ads.txt
+            git commit -m "Create ads.txt for Google AdSense"
+            git push
+          else
+            echo "ads.txt already exists"
+          fi
