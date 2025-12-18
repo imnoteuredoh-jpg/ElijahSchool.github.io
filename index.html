@@ -619,10 +619,29 @@ if (typeof announcementManager !== 'undefined') {
     if (announcement && announcement.buttonLink) {
       const buttonLink = announcement.buttonLink.trim();
       
-      // Handle relative URLs (starting with /)
-      if (buttonLink.startsWith('/')) {
-        window.location.href = buttonLink;
+      // Check if buttonLink is not empty after trimming
+      if (!buttonLink) {
+        // Empty link, treat as dismiss
+        if (announcement) {
+          sessionStorage.setItem('announcement-dismissed-' + announcement.createdAt, 'true');
+        }
+        const banner = document.getElementById('announcement-banner');
+        banner.classList.remove('show');
+        setTimeout(() => {
+          banner.style.display = 'none';
+        }, 300);
         return;
+      }
+      
+      // Handle relative URLs (starting with / but not with //)
+      if (buttonLink.startsWith('/') && !buttonLink.startsWith('//')) {
+        // Basic validation: ensure no dangerous patterns
+        if (!buttonLink.includes('..') && !buttonLink.toLowerCase().includes('javascript:')) {
+          window.location.href = buttonLink;
+          return;
+        } else {
+          console.error('Potentially dangerous relative URL pattern detected');
+        }
       }
       
       // Validate absolute URLs
