@@ -9,7 +9,12 @@
     // Generate a unique session ID for this browser session
     let sessionId = sessionStorage.getItem('presence-session-id');
     if (!sessionId) {
-      sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11);
+      // Use crypto.randomUUID if available, otherwise fallback to timestamp + random
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        sessionId = 'session_' + crypto.randomUUID();
+      } else {
+        sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11);
+      }
       sessionStorage.setItem('presence-session-id', sessionId);
     }
 
@@ -33,7 +38,6 @@
 
     // Write session with session ID and game info
     const sessionRef = db.ref('presence/sessions/' + sessionId);
-    const currentSessionId = sessionId;
     const sessionData = {
       path: currentPage,
       isGame: isActuallyInGame,
@@ -128,7 +132,7 @@
           const otherSessions = Object.entries(sessions)
             .filter(([key, user]) => {
               // Exclude current session, stale sessions, and null entries
-              return key !== currentSessionId 
+              return key !== sessionId 
                 && user 
                 && (now - (user.ts || 0)) < 30000;
             })
