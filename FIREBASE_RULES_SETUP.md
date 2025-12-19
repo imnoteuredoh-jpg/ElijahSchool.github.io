@@ -49,8 +49,8 @@ Configure the Firebase Realtime Database rules in the Firebase Console to allow:
     },
     "presence": {
       ".read": true,
-      "$uid": {
-        ".write": "auth != null && auth.uid == $uid"
+      "sessions": {
+        ".write": "auth != null"
       }
     }
   }
@@ -77,7 +77,7 @@ Configure the Firebase Realtime Database rules in the Firebase Console to allow:
 
 ### `presence` path
 - **Read**: Anyone can see who's online
-- **Write**: Users can only update their own presence status
+- **Write**: Any authenticated user can write to `presence/sessions` to track their online status
 
 ## Testing the Rules
 
