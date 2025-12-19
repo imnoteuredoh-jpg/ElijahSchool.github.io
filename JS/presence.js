@@ -10,7 +10,7 @@
     let sessionId = sessionStorage.getItem('presence-session-id');
     if (!sessionId) {
       // Use crypto.randomUUID if available, otherwise fallback to timestamp + random
-      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
         sessionId = 'session_' + crypto.randomUUID();
       } else {
         sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11);
@@ -37,7 +37,7 @@
     }
 
     // Write session with session ID and game info
-    const sessionRef = db.ref('presence/sessions/' + sessionId);
+    const sessionRef = db.ref(`presence/sessions/${sessionId}`);
     const sessionData = {
       path: currentPage,
       isGame: isActuallyInGame,
