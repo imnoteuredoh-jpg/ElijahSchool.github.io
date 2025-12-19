@@ -13,6 +13,7 @@
       if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
         sessionId = 'session_' + crypto.randomUUID();
       } else {
+        // Fallback: timestamp + 9 random alphanumeric characters
         sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).slice(2, 11);
       }
       sessionStorage.setItem('presence-session-id', sessionId);
