@@ -1,942 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Desmos | Graphing Calculator</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<meta name="description" content="Play free online games on druskii128. Browse through hundreds of browser-based games including action, puzzle, sports, and arcade games. No downloads required!">
-<meta name="keywords" content="free games, online games, browser games, flash games, html5 games, web games">
-<meta name="author" content="druskii128">
-<meta property="og:title" content="druskii128 - Free Online Games">
-<meta property="og:description" content="Play free online games on druskii128. No downloads required!">
-<meta property="og:type" content="website">
-<meta name="robots" content="index, follow">
-<!-- analyticsssss -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F08N1KVKEF"></script>
+<meta charset="UTF-8" />
+
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R1ZCLH6XCR"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-F08N1KVKEF');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-R1ZCLH6XCR');
 </script>
-<!-- Ezoic -->
-<script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
-<script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
-<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+
+<title>Basket And Ball</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b0f1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Smooth modern font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #12182b, #05060a);
+  overflow: hidden;
+}
+
+/* Center wrapper */
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Game card */
+#game-shell {
+  width: min(100%, 1200px);
+  height: min(100%, 720px);
+  background: rgba(15, 18, 35, 0.85);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Header */
+#topbar {
+  height: 52px;
+  background: linear-gradient(90deg, #1b1f3b, #12162d);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+/* Game area */
+#game-container {
+  width: 100%;
+  height: calc(100% - 52px);
+  position: relative;
+}
+
+/* Loader overlay */
+#loader {
+  position: absolute;
+  inset: 0;
+  background: #05060a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 5;
+  animation: fadeIn 0.3s ease;
+}
+
+.spinner {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 4px solid #2a2f55;
+  border-top: 4px solid #6c7cff;
+  animation: spin 1s linear infinite;
+}
+
+#loader span {
+  color: #9aa3ff;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile full screen */
+@media (max-width: 768px) {
+  #game-shell {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
+
 <script>
-    window.ezstandalone = window.ezstandalone || {};
-    ezstandalone.cmd = ezstandalone.cmd || [];
+(function (document, url, fgJS, firstJS) {
+  fgJS = document.createElement('script');
+  firstJS = document.getElementsByTagName('script')[0];
+  fgJS.src = url + encodeURIComponent(document.location.href);
+  firstJS.parentNode.insertBefore(fgJS, firstJS);
+})(document, '/html5games/gameapi/v1.js?e=');
 </script>
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-<script src="JS/firebase-config.js"></script>
-<script src="JS/games-manager.js"></script>
-<script src="JS/announcement-manager.js"></script>
 </head>
-<body onload="startTime()">
 
-<header class="menubar">
-  <nav class="topnav">
-        <a class="active" href="index.html">home</a>
-        <div class="search-inline">
-            <input class="search-box" id="search-box" type="search" onkeyup="searching(this)" onfocus="fun(this)" placeholder="search...">
-            <button class="clear-search" id="clear-search" onclick="clearSearch()" title="clear search" style="display:none">×</button>
-            <div class="search-results" id="search-results"></div>
-        </div>
-        <div class="topnav-right">
-            <button id="theme-toggle" class="theme-toggle" title="toggle theme" aria-label="toggle theme">
-                <span class="theme-icon">🌙</span>
-            </button>
-            <a href="https://tally.so/r/aQ5WZ2">request</a>
-            <a href="#" id="changelog-btn">changelog</a>
-            <span id="last-updated" style="font-size: 0.75rem; color: var(--text-muted);">last updated: loading…</span>
-        </div>
-  </nav>
-</header>
+<body>
+<div id="app">
+  <div id="game-shell">
+    
+    <div id="topbar">🏀 Basket And Ball</div>
 
-<!-- Announcement Banner -->
-<div id="announcement-banner" class="announcement-banner" style="display: none;">
-  <div class="announcement-content">
-    <img id="announcement-icon" class="announcement-icon" src="" alt="" style="display: none;">
-    <div class="announcement-text">
-      <h3 id="announcement-title" class="announcement-title"></h3>
-      <p id="announcement-message" class="announcement-message"></p>
-    </div>
-  </div>
-  <button id="announcement-dismiss" class="announcement-dismiss"></button>
-</div>
-
-<main>
-    <!-- search moved to topbar -->
-
-  <div class="hero-section">
-    <h1 class="title">druskii128</h1>
-        <p id="hero-text" style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 20px; font-weight: 400; max-width: 600px;">loading...</p>
-        <div class="presence-indicator" id="presence-indicator" style="margin-top: 12px; display: flex; align-items: center; gap: 8px; color: var(--text-secondary);">
-            <span class="presence-dot" aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: var(--color-online); display: inline-block;"></span>
-            <span class="presence-icon" aria-hidden="true">👤</span>
-            <span id="online-count">0 online</span>
-            <span id="ingame-count" style="margin-left: 8px; color: var(--color-in-game);">0 in game</span>
-            <button id="online-info-btn" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 0.875rem; padding: 0 4px; margin-left: 8px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; opacity: 0.6;" title="view other users">more</button>
-        </div>
-
-  </div>
-
-<!-- Online Users Modal -->
-<div id="online-users-modal" style="display: none;">
-  <div class="modal-content">
-    <button id="close-modal-btn">✕</button>
-    <div class="modal-header-title">users online</div>
-    <div id="users-list" style="color: #999999; font-size: 0.875rem;">loading users...</div>
-  </div>
-</div>
-
-
-
-  <h2 class="text-center">recently played</h2>
-  <div id="recently-played-container" class="flex-container" style="margin-bottom: 50px;">
-    <!-- Recently played games loaded from localStorage -->
-  </div>
-
-  <h2 class="text-center">trending games</h2>
-
-  <!-- Trending games section - dynamically loaded -->
-  <script src="JS/search.js"></script>
-
-  <div id="trending-games" class="flex-container" style="margin-bottom: 50px;">
-    <!-- Trending games loaded from Firebase -->
-  </div>
-
-  <!-- Ad Container Between Sections -->
-  <div class="ad-container" style="margin: 40px auto; text-align: center; max-width: 728px;">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9261158347206771"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-  
-  <h2 class="text-center">all games</h2>
-
-  <div id="all-games" class="flex-container">
-    <!-- All games loaded from Firebase -->
-    <a href="projects/2048/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/2048/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">2048</h1>
-              </div>
-          </a>
-
-          <a href="projects/9007199254740992/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/9007199254740992/logo-4.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">9007199254740992</h1>
-              </div>
-          </a>
-		  
-		            <a href="projects/ages-of-conflict/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/ages-of-conflict/splash.jpg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Ages Of Conflict</h1>
-              </div>
-          </a>
-		  
-		  		  <a href="projects/among-us/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/among-us/unnamed.jpg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Among Us</h1>
-              </div>
-          </a>
-		  
-		  		  <a href="projects/a-small-world-cup/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/a-small-world-cup/a-small-world-cup.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">A Small World Cup</h1>
-              </div>
-          </a>
-		  
-		  		  <a href="projects/baldis-basics/index.html" class="game-link container">
-              <div class="game-tile-popular">
-                  <img class="game-icon" src="projects/baldis-basics/baldis-basics.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Baldi's Basics</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/ball-sort-puzzle/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/ball-sort-puzzle/thumb.png" alt="icon" width="360" height="360">
-                  <h1 class="game-title">Ball Sort Puzzle</h1>
-              </div>
-          </a>
-		  		  
-		  <a href="projects/basket-and-ball/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/basket-and-ball/thumb.jpg" alt="icon" width="360" height="360">
-                  <h1 class="game-title">Basket and Ball</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/bitlife/index.html" class="game-link container">
-              <div class="game-tile-popular">
-                  <img class="game-icon" src="projects/bitlife/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Bitlife</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/blackjack/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/blackjack/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Blackjack</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/block-the-pig/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/block-the-pig/thumb.png" alt="icon" width="360" height="360">
-                  <h1 class="game-title">Block the Pig</h1>
-              </div>
-          </a>
-
-          <a href="projects/btd4/btd4.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/btd4/btd4-icon.png" alt="icon" width="360" height="360">
-                  <h1 class="game-title">Bloons TD 4</h1>
-              </div>
-          </a>
-		  
-          <a href="projects/cell-machine/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/cell-machine/img/te9nDu.png" alt="icon" width="360" height="360">
-                  <h1 class="game-title">Cell Machine</h1>
-              </div>
-          </a>
-
-          <a href="projects/chrome-dino/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/chrome-dino/icons/icon-256.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Chrome Dino</h1>
-              </div>
-          </a>
-
-          <a href="projects/circlo/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/circlo/img/download.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">circlO</h1>
-              </div>
-          </a>
-
-          <a href="projects/cookie-clicker/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/cookie-clicker/cookie1.jpeg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Cookie Clicker</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/core-ball/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/core-ball/pr_source.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Core Ball</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/ctr-time-travel/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/ctr-time-travel/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Cut The Rope</h1>
-              </div>
-          </a>
-
-          <a href="projects/death-run-3d/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/death-run-3d/img/death.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Death Run 3D</h1>
-              </div>
-          </a>
-
-          <a href="projects/doodle-jump/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/doodle-jump/doodle.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Doodle Jump</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/drift-boss/index.html" class="game-link container">
-              <div class="game-tile-popular">
-                  <img class="game-icon" src="projects/drift-boss/drift-boss.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Drift Boss</h1>
-              </div>
-          </a>
-		  
-		 <a href="projects/drift-hunters/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/drift-hunters/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Drift Hunters</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/eaglercraft/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/eaglercraft/icon.jpeg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">EaglerCraft</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/edge-surf/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/edge-surf/favicon.svg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Edge Surf</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/flappy-bird/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/flappy-bird/assets/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Flappy Bird</h1>
-              </div>
-          </a>
-		  
-		            <a href="projects/fruit-ninja/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/fruit-ninja/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Fruit Ninja</h1>
-              </div>
-          </a>
-		  
-          <a href="projects/geodash/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/geodash/geoscratchicon.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Geometry Dash</h1>
-              </div>
-          </a>
-
-		  <a href="projects/google-feud/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/google-feud/splash.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Google Feud</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/google-snake/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/google-snake/google-snake.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Google Snake</h1>
-              </div>
-          </a>
-
-          <a href="projects/hextris/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/hextris/images/hextris-logo.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Hextris</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/idle-breakout/frame.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/idle-breakout/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Idle Breakout</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/little-alchemy/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/little-alchemy/unnamed.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Little Alchemy 2</h1>
-              </div>
-          </a>
-
-          <a href="projects/mario/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/mario/Theme/Mario.jpg" alt="icon" width="360" height="360"/>
-                  <h1 class="game-title">Mario</h1>
-              </div>
-          </a>
-
-          <a href="projects/minesweeper/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/minesweeper/img/minesweeper.png" alt="icon" width="360" height="360"/>
-                  <h1 class="game-title">Minesweeper</h1>
-              </div>
-          </a>
-		  
-		            <a href="projects/pacman/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/pacman/thumbnail.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Pac-Man</h1>
-              </div>
-          </a>
-
-          <a href="projects/paperio2/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/paperio2/images/icon512.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Paper.io 2</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/papery-planes/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/papery-planes/splash.jpg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Papery Planes</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/poker/poker.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/poker/static/images/logo.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Poker</h1>
-              </div>
-          </a>
-
-          <a href="projects/retro-bowl/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/retro-bowl/img/icon.jpg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Retro Bowl</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/retro-bowl-college/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/retro-bowl-college/unnamed.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Retro Bowl College</h1>
-              </div>
-          </a>
-		  		  
-		  <a href="projects/rocketpult/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/rocketpult/rocketpult.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Rocketpult</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/rooftop-snipers/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/rooftop-snipers/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Rooftop Snipers</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/sandtrix/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/sandtrix/thumb.png" alt="icon" width="360" height="360">
-                  <h1 class="game-title">Sand Tetris</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/save-the-doge/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/save-the-doge/thumb.png" alt="icon" width="360" height="360">
-                  <h1 class="game-title">Save the Doge</h1>
-              </div>
-          </a>
-
-          <a href="projects/slope/index.html" class="game-link container">
-              <div class="game-tile-popular">
-                  <img class="game-icon" src="projects/slope/slope4.jpeg" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Slope</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/smash-karts/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/smash-karts/smash-karts.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Smash Karts</h1>
-              </div>
-          </a>
-
-          <a href="projects/solitaire/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/solitaire/screen-shot.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Solitare</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/stack/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/stack/icon.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Stack</h1>
-              </div>
-          </a>
-
-          <a href="subway-surfers.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/subway-surfers-san-francisco/img/splash.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Subway Surfers</h1>
-              </div>
-          </a>
-		
-		  <a href="projects/totm/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/totm/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Tomb of the Mask</h1>
-              </div>
-          </a>
-
-		  <a href="projects/tosstheturtle/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/tosstheturtle/tosstheturtle.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Toss The Turtle</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/waterworks/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/waterworks/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">Waterworks!</h1>
-              </div>
-          </a>
-		  
-		  <a href="projects/wbwwb/index.html" class="game-link container">
-              <div class="game-tile">
-                  <img class="game-icon" src="projects/wbwwb/thumb.png" alt="icon" width="360" height="360" />
-                  <h1 class="game-title">We Become what We Behold</h1>
-              </div>
-          </a>
-
-  </div>
-
-  <!-- Ad Container Between Sections -->
-  <div class="ad-container" style="margin: 40px auto; text-align: center; max-width: 728px;">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-9261158347206771"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-		
-        <h2 id="papas-games" class="text-center">papa's games</h2>
-                
-    <div id="papas-games-container" class="flex-container">
-        <!-- Papa's games loaded from Firebase -->
-    </div>
-</div>
-
-<!-- Changelog Modal -->
-<div id="changelog-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>changelog</h2>
-      <span class="modal-close">&times;</span>
-    </div>
-    <div class="modal-body">
-      <div id="changelog-list">
-        <div class="loading">loading changelog...</div>
+    <div id="game-container">
+      <div id="loader">
+        <div class="spinner"></div>
+        <span>Loading game…</span>
       </div>
     </div>
+
   </div>
 </div>
-</div>
 
-<div class="loading-overlay" id="loading-overlay"></div>
-<div class="loading-spinner" id="loading-spinner"></div>
-
-<script src="JS/themes.js"></script>
-<script src="JS/theme-switcher.js"></script>
-<script src="JS/hide.js"></script>
-<script src="JS/clock.js"></script>
-<script src="JS/search.js"></script>
-<script src="JS/size.js"></script>
-<script src="JS/changelog.js"></script>
-<script src="JS/presence.js"></script>
-<script src="JS/cmp.js"></script>
-<script src="JS/recently-played.js"></script>
-<script src="JS/favorites.js"></script>
-<script src="JS/settings-display.js"></script>
-<script src="JS/iframe-dark-mode.js"></script>
-<script>
-// Fetch most recent commit and display in GMT-6
-(function(){
-    const el = document.getElementById('last-updated');
-    if (!el) return;
-    // Adjust owner/repo if different
-    const owner = 'druskii64';
-    const repo = 'druskii64.github.io';
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=1`;
-    fetch(apiUrl)
-        .then(r => r.json())
-        .then(data => {
-            const commit = Array.isArray(data) && data[0];
-            const iso = commit?.commit?.committer?.date || commit?.commit?.author?.date;
-            if (!iso) throw new Error('No commit date');
-            const d = new Date(iso);
-            // Convert to GMT-6
-            const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-            const gmt6 = new Date(utc + (-6 * 3600000));
-            // Format: M/D/YY h:mm am/pm gmt-6
-            const mm = gmt6.getMonth() + 1;
-            const dd = gmt6.getDate();
-            const yy = String(gmt6.getFullYear()).slice(-2);
-            let h = gmt6.getHours();
-            const ampm = h >= 12 ? 'pm' : 'am';
-            h = h % 12; h = h ? h : 12;
-            const m = String(gmt6.getMinutes()).padStart(2, '0');
-            el.textContent = `last updated: ${mm}/${dd}/${yy} ${h}:${m} ${ampm}`;
-        })
-        .catch(() => {
-            // Fallback to local time GMT-6 now
-            const now = new Date();
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const gmt6 = new Date(utc + (-6 * 3600000));
-            const mm = gmt6.getMonth() + 1;
-            const dd = gmt6.getDate();
-            const yy = String(gmt6.getFullYear()).slice(-2);
-            let h = gmt6.getHours();
-            const ampm = h >= 12 ? 'pm' : 'am';
-            h = h % 12; h = h ? h : 12;
-            const m = String(gmt6.getMinutes()).padStart(2, '0');
-            el.textContent = `last updated: ${mm}/${dd}/${yy} ${h}:${m} ${ampm}`;
-        });
-})();
-</script>
+<!-- Game Loader -->
+<script src="loader.js"></script>
 
 <script>
-// Initialize announcement display
-if (typeof announcementManager !== 'undefined') {
-  announcementManager.init();
-  
-  announcementManager.addListener((announcement) => {
-    const banner = document.getElementById('announcement-banner');
-    
-    if (announcement && !sessionStorage.getItem('announcement-dismissed-' + announcement.createdAt)) {
-      // Show announcement
-      document.getElementById('announcement-title').textContent = announcement.title;
-      document.getElementById('announcement-message').textContent = announcement.content;
-      document.getElementById('announcement-dismiss').textContent = announcement.buttonText || 'OK';
-      
-      // Handle icon
-      const iconEl = document.getElementById('announcement-icon');
-      if (announcement.icon) {
-        iconEl.src = announcement.icon;
-        iconEl.style.display = 'block';
-      } else {
-        iconEl.style.display = 'none';
-      }
-      
-      banner.style.display = 'flex';
-      
-      // Slide down animation
-      setTimeout(() => {
-        banner.classList.add('show');
-      }, 100);
-    } else {
-      banner.style.display = 'none';
-      banner.classList.remove('show');
-    }
-  });
-  
-  // Helper function to dismiss announcement
-  function dismissAnnouncement(announcement) {
-    if (announcement) {
-      sessionStorage.setItem('announcement-dismissed-' + announcement.createdAt, 'true');
-    }
-    const banner = document.getElementById('announcement-banner');
-    banner.classList.remove('show');
-    setTimeout(() => {
-      banner.style.display = 'none';
-    }, 300);
+var settings = {
+  gameId: "4f3d7d38d24b740c95da2b03dc3a2333",
+  userId: "31D29405-8D37-4270-BF7C-8D99CCF0177F-s1",
+  resumeGame: resumeGame,
+  pauseGame: pauseGame,
+  onInit: function () {
+    document.getElementById("loader").style.display = "none";
+  },
+  onError: function (e) {
+    console.error(e);
   }
-  
-  // Handle dismiss button
-  document.getElementById('announcement-dismiss').addEventListener('click', function() {
-    const announcement = announcementManager.getCurrentAnnouncement();
-    const buttonLink = announcement?.buttonLink?.trim();
-    
-    // If there's a valid button link, navigate to it instead of dismissing
-    if (buttonLink) {
-      // Handle relative URLs (starting with / but not with //)
-      // Protocol-relative URLs (//) are rejected as they can redirect externally
-      if (buttonLink.startsWith('/') && !buttonLink.startsWith('//')) {
-        // Validate relative URL: check for dangerous patterns
-        const lowerLink = buttonLink.toLowerCase();
-        // Decode URL to catch encoded dangerous patterns
-        let decodedLink;
-        try {
-          decodedLink = decodeURIComponent(buttonLink).toLowerCase();
-        } catch (e) {
-          decodedLink = lowerLink;
-        }
-        
-        const dangerousPatterns = [
-          '/../', '/..', '..%2f', '%2e%2e/', '%2e%2e%2f',
-          'javascript:', 'data:', 'vbscript:', 'file:', 'blob:'
-        ];
-        const hasDangerousPattern = dangerousPatterns.some(pattern => 
-          lowerLink.includes(pattern) || decodedLink.includes(pattern)
-        );
-        
-        if (!hasDangerousPattern) {
-          window.location.href = buttonLink;
-          return;
-        } else {
-          console.error('Potentially dangerous relative URL pattern detected');
-          // Fall through to dismiss
-        }
-      } else {
-        // Validate absolute URLs (including protocol-relative URLs)
-        try {
-          const url = new URL(buttonLink, window.location.origin);
-          // Only allow http and https protocols
-          if (url.protocol === 'http:' || url.protocol === 'https:') {
-            window.location.href = url.href;
-            return;
-          } else {
-            console.error('Invalid URL protocol:', url.protocol);
-            // Fall through to dismiss
-          }
-        } catch (e) {
-          console.error('Invalid announcement button link:', e);
-          // Fall through to dismiss
-        }
-      }
-    }
-    
-    // Dismiss the announcement
-    dismissAnnouncement(announcement);
-  });
-}
+};
 
-// Initialize games display with Firebase
-if (typeof gamesManager !== 'undefined') {
-  gamesManager.init();
-  
-  gamesManager.addListener((allGames, trendingGames) => {
-    console.log('Games updated - Trending:', trendingGames.length, 'All:', allGames.length);
-    
-    // If no trending games, show top 5 by plays as fallback
-    let displayTrending = trendingGames;
-    if (displayTrending.length === 0 && allGames.length > 0) {
-      console.log('No trending games marked, using top 5 by plays');
-      displayTrending = allGames
-        .sort((a, b) => (b.plays || 0) - (a.plays || 0))
-        .slice(0, 5);
-    }
-    
-    // Filter by section
-    const allSectionGames = allGames.filter(g => (g.section || 'all') === 'all');
-    const papasSectionGames = allGames.filter(g => (g.section || 'all') === 'papas');
+(function(i,s,o,g,r,a,m){
+  i['GameDistribution']=r;
+  i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)};
+  a=s.createElement(o);
+  m=s.getElementsByTagName(o)[0];
+  a.async=1;
+  a.src=g;
+  m.parentNode.insertBefore(a,m);
+})(window, document, 'script',
+'patch/js/gd-sdk.js?html5.api.gamedistribution.com/libs/gd/api.js',
+'gdApi');
 
-    renderTrendingGames(displayTrending);
-    renderAllGames(allSectionGames);
-    renderPapasGames(papasSectionGames);
-  });
-}
+gdApi(settings);
 
-// Presence tracking now handled by JS/presence.js
-
-function renderTrendingGames(games) {
-  const container = document.getElementById('trending-games');
-  if (!container) {
-    console.error('trending-games container not found');
-    return;
-  }
-  
-  container.innerHTML = '';
-  
-  if (!games || games.length === 0) {
-    console.warn('No trending games to display');
-    container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">no trending games yet</p>';
-    return;
-  }
-  
-  // Already sorted by plays in games-manager
-  games.forEach(game => {
-    const gameLink = document.createElement('a');
-    gameLink.className = 'game-link';
-    
-    // Track clicks before navigation
-    gameLink.addEventListener('click', async (e) => {
-      // Prevent immediate navigation
-      e.preventDefault();
-      
-      // Track as recently played
-      if (typeof trackGamePlay === 'function') {
-        trackGamePlay(game.id, game.name, game.path, game.thumb);
-      }
-      
-      // Show loading spinner
-      const spinner = document.getElementById('loading-spinner');
-      const overlay = document.getElementById('loading-overlay');
-      if (spinner) spinner.classList.add('active');
-      if (overlay) overlay.classList.add('active');
-      
-      if (game.id) {
-        try {
-          console.log('Incrementing play count for:', game.name, game.id);
-          await gamesManager.incrementPlays(game.id);
-          console.log('Play count updated successfully');
-        } catch (error) {
-          console.error('Error tracking play:', error);
-        }
-      }
-      
-      // Hide loading spinner and navigate
-      if (spinner) spinner.classList.remove('active');
-      if (overlay) overlay.classList.remove('active');
-      
-      // Navigate after tracking (with small delay)
-      setTimeout(() => {
-        window.location.href = game.path;
-      }, 100);
-    });
-    
-    const plays = game.plays || 0;
-    const playsText = plays >= 1000 ? (plays / 1000).toFixed(1) + 'k' : plays;
-    
-    gameLink.innerHTML = `
-      <div class="game-tile-popular">
-        <img class="game-icon" src="${game.thumb}" alt="${game.name}">
-        <h2 class="game-title">${game.name}</h2>
-        <div class="play-counter">
-          <span class="play-counter-icon">🎮</span>
-          <span>${playsText}</span>
-        </div>
-      </div>
-    `;
-    
-    container.appendChild(gameLink);
-  });
-}
-
-function renderAllGames(games) {
-  const container = document.getElementById('all-games');
-  container.innerHTML = '';
-  
-  // Sort alphabetically only for the "all games" section
-  const sortedGames = [...games].sort((a, b) => a.name.localeCompare(b.name));
-  
-  sortedGames.forEach((game, index) => {
-    // Insert ad every 12 games
-    if (index > 0 && index % 12 === 0) {
-      const adCard = document.createElement('div');
-      adCard.className = 'ad-card';
-      adCard.innerHTML = `
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9261158347206771"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-      `;
-      container.appendChild(adCard);
-      
-      // Initialize the ad
-      try {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.log('AdSense error:', e);
-      }
-    }
-    
-    const gameLink = document.createElement('a');
-    gameLink.href = game.path;
-    gameLink.className = 'game-link container';
-    
-    gameLink.innerHTML = `
-      <div class="game-tile">
-        <img class="game-icon" src="${game.thumb}" alt="${game.name}" width="360" height="360">
-        <h1 class="game-title">${game.name}</h1>
-        <button class="favorite-btn-hover" data-game-id="${game.id}" style="display: none;">☆</button>
-      </div>
-    `;
-    
-    // Add hover events for favorites button
-    const favBtn = gameLink.querySelector('.favorite-btn-hover');
-    gameLink.addEventListener('mouseenter', () => {
-      favBtn.style.display = 'block';
-      if (isFavorite(game.id)) {
-        favBtn.textContent = '★';
-        favBtn.classList.add('active');
-      } else {
-        favBtn.textContent = '☆';
-        favBtn.classList.remove('active');
-      }
-    });
-    gameLink.addEventListener('mouseleave', () => {
-      favBtn.style.display = 'none';
-    });
-    
-    // Favorite button click handler
-    favBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleFavorite(game.id);
-      if (isFavorite(game.id)) {
-        favBtn.textContent = '★';
-        favBtn.classList.add('active');
-      } else {
-        favBtn.textContent = '☆';
-        favBtn.classList.remove('active');
-      }
-    });
-    
-    container.appendChild(gameLink);
-  });
-}
-
-function renderPapasGames(games) {
-    const container = document.getElementById('papas-games-container');
-    if (!container) return;
-    container.innerHTML = '';
-
-    const sortedGames = [...games].sort((a, b) => a.name.localeCompare(b.name));
-
-    sortedGames.forEach((game, index) => {
-        // Insert ad every 8 games in papa's section
-        if (index > 0 && index % 8 === 0) {
-            const adCard = document.createElement('div');
-            adCard.className = 'ad-card';
-            adCard.innerHTML = `
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-9261158347206771"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-            `;
-            container.appendChild(adCard);
-            
-            // Initialize the ad
-            try {
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            } catch (e) {
-                console.log('AdSense error:', e);
-            }
-        }
-        
-        const gameLink = document.createElement('a');
-        gameLink.href = game.path;
-        gameLink.className = 'game-link container';
-
-        gameLink.innerHTML = `
-            <div class="game-tile">
-                <img class="game-icon" src="${game.thumb}" alt="${game.name}" width="360" height="360">
-                <h1 class="game-title">${game.name}</h1>
-            </div>
-        `;
-
-        container.appendChild(gameLink);
-    });
-}
+function resumeGame(){}
+function pauseGame(){}
 </script>
 
-<footer class="site-footer">
-    <div class="footer-content">
-        <div class="footer-links">
-            <a href="privacy-policy.html">privacy policy</a>
-            <a href="terms-of-service.html">terms of service</a>
-            <a href="about.html">about</a>
-            <a href="https://forms.gle/eRT37jLokfETBNUs6" target="_blank" rel="noopener noreferrer">contact</a>
-        </div>
-        <p class="footer-text">© 2026 silaspuma. all rights reserved.</p>
-        <p class="footer-disclaimer">all games are property of their respective owners. this site is supported by advertising :3</p>
-    </div>
-</footer>
+<!-- Analytics + Firebase -->
+<script src="js/analytics_ubg_v1_4.js"></script>
+<script src="js/ubg235_client_v1_1.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="/JS/firebase-config.js"></script>
+<script src="/JS/presence.js"></script>
 
 </body>
 </html>
