@@ -5,147 +5,157 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>druskii128 | Free Online Games</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<meta name="description" content="Play free online games on druskii128. Hundreds of HTML5 and browser-based games with no downloads!">
-<meta name="keywords" content="free games, online games, browser games, html5 games">
+<meta name="description" content="Play free online games on druskii128. Browse hundreds of browser-based games including action, puzzle, sports, and arcade. No downloads required.">
+<meta name="keywords" content="free games, online games, browser games, HTML5 games, web games">
 <meta name="author" content="druskii128">
+<meta property="og:title" content="druskii128 - Free Online Games">
+<meta property="og:description" content="Play free online games on druskii128. No downloads required!">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F08N1KVKEF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F08N1KVKEF');
+</script>
 
-<style>
-  /* VARIABLES */
-  :root {
-    --color-bg: #f5f6fa;
-    --color-card-bg: #ffffff;
-    --color-card-hover: #e1e4eb;
-    --color-primary: #4f46e5;
-    --color-text: #1f2937;
-    --color-text-muted: #6b7280;
-    --color-online: #22c55e;
-    --color-in-game: #f97316;
-    --transition: 0.3s ease;
-    --border-radius: 12px;
-  }
-  [data-theme="dark"] {
-    --color-bg: #121212;
-    --color-card-bg: #1e1e1e;
-    --color-card-hover: #272727;
-    --color-text: #f5f5f5;
-    --color-text-muted: #9ca3af;
-  }
+<!-- Ezoic -->
+<script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+<script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
 
-  /* BASE STYLES */
-  * { box-sizing: border-box; margin:0; padding:0; font-family: 'Inter', sans-serif; }
-  body { background: var(--color-bg); color: var(--color-text); line-height: 1.5; transition: background var(--transition), color var(--transition); }
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="JS/firebase-config.js"></script>
 
-  /* HEADER */
-  header { width: 100%; background: var(--color-card-bg); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top:0; z-index:100; }
-  nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; gap: 12px; flex-wrap: wrap; }
-  nav a { text-decoration: none; color: var(--color-text); font-weight: 600; transition: color var(--transition); }
-  nav a:hover { color: var(--color-primary); }
-  .search-inline { position: relative; flex:1 1 200px; max-width: 400px; }
-  .search-box { width: 100%; padding: 8px 40px 8px 12px; border-radius: var(--border-radius); border: 1px solid #ccc; transition: all var(--transition); }
-  .search-box:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(79,70,229,0.2); }
-  .clear-search { position: absolute; right:8px; top:50%; transform:translateY(-50%); background:none;border:none;font-size:1rem;cursor:pointer;opacity:0.6;transition: opacity var(--transition); }
-  .clear-search:hover { opacity:1; }
+<!-- Custom JS -->
+<script src="JS/games-manager.js"></script>
+<script src="JS/announcement-manager.js"></script>
+<script src="JS/themes.js"></script>
+<script src="JS/theme-switcher.js"></script>
+<script src="JS/hide.js"></script>
+<script src="JS/clock.js"></script>
+<script src="JS/search.js"></script>
+<script src="JS/size.js"></script>
+<script src="JS/changelog.js"></script>
+<script src="JS/presence.js"></script>
+<script src="JS/cmp.js"></script>
+<script src="JS/recently-played.js"></script>
+<script src="JS/favorites.js"></script>
+<script src="JS/settings-display.js"></script>
+<script src="JS/iframe-dark-mode.js"></script>
 
-  /* THEME TOGGLE */
-  .theme-toggle { background:none;border:none;cursor:pointer;font-size:1.25rem;transition: transform var(--transition); }
-  .theme-toggle:hover { transform: rotate(20deg); }
-
-  /* HERO SECTION */
-  .hero-section { text-align: center; padding: 60px 20px 40px; }
-  .hero-section .title { font-size: 3rem; font-weight: 700; margin-bottom: 12px; }
-  .hero-section p { font-size: 1.1rem; color: var(--color-text-muted); max-width:600px; margin: 0 auto 20px; }
-
-  .presence-indicator { display:flex; justify-content:center; align-items:center; gap:8px; color: var(--color-text-muted); margin-top:12px; }
-  .presence-dot { width:10px; height:10px; border-radius:50%; display:inline-block; background: var(--color-online); }
-
-  /* GAME SECTIONS */
-  h2.text-center { text-align:center; font-size:1.75rem; margin:40px 0 24px; font-weight:600; color: var(--color-text); }
-  .flex-container { display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap:20px; padding:0 24px; }
-
-  .game-tile, .game-tile-popular { background: var(--color-card-bg); border-radius: var(--border-radius); overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.05); transition: all var(--transition); cursor:pointer; display:flex; flex-direction:column; align-items:center; text-align:center; padding:12px; }
-  .game-tile:hover, .game-tile-popular:hover { background: var(--color-card-hover); transform: translateY(-4px); box-shadow:0 8px 20px rgba(0,0,0,0.1); }
-  .game-icon { width:100%; border-radius: var(--border-radius); object-fit:cover; margin-bottom:12px; }
-  .game-title { font-size:1rem; font-weight:600; margin-bottom:6px; }
-  .play-counter { display:flex; justify-content:center; align-items:center; gap:4px; font-size:0.85rem; color: var(--color-text-muted); }
-  
-  /* FOOTER */
-  footer { margin-top:60px; padding:24px; background: var(--color-card-bg); color: var(--color-text-muted); text-align:center; border-top:1px solid #ddd; }
-  footer a { margin:0 6px; color: var(--color-text-muted); text-decoration:none; font-weight:500; transition: color var(--transition); }
-  footer a:hover { color: var(--color-primary); }
-
-  /* MODALS */
-  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(2px); justify-content:center; align-items:center; z-index:200; }
-  .modal-content { background: var(--color-card-bg); padding:24px; border-radius: var(--border-radius); max-width:500px; width:90%; box-shadow:0 10px 30px rgba(0,0,0,0.2); }
-  .modal-close { float:right; cursor:pointer; font-size:1.25rem; }
-
-  /* LOADING SPINNER */
-  #loading-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.2); display:none; z-index:300; }
-  #loading-spinner { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); display:none; width:50px; height:50px; border:5px solid #ccc; border-top-color: var(--color-primary); border-radius:50%; animation:spin 1s linear infinite; z-index:301; }
-  #loading-spinner.active, #loading-overlay.active { display:block; }
-  @keyframes spin { 0%{transform:translate(-50%,-50%) rotate(0deg);} 100%{transform:translate(-50%,-50%) rotate(360deg);} }
-
-  /* ADS */
-  .ad-container { margin:40px auto; max-width:728px; text-align:center; }
-
-  /* RESPONSIVE */
-  @media(max-width:600px){ nav{flex-direction:column; align-items:flex-start;} .flex-container{grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:16px;} .hero-section .title{font-size:2.2rem;} }
-</style>
-
+<link rel="stylesheet" href="styles.css">
 </head>
-<body data-theme="light">
 
-<header>
-  <nav>
+<body onload="startTime()">
+
+<!-- Top Navigation -->
+<header class="menubar">
+  <nav class="topnav">
     <a class="active" href="index.html">Home</a>
     <div class="search-inline">
-      <input type="search" id="search-box" placeholder="Search games...">
-      <button class="clear-search" id="clear-search">×</button>
+      <input class="search-box" id="search-box" type="search" onkeyup="searching(this)" onfocus="fun(this)" placeholder="search...">
+      <button class="clear-search" id="clear-search" onclick="clearSearch()" style="display:none">×</button>
+      <div class="search-results" id="search-results"></div>
     </div>
-    <div>
-      <button id="theme-toggle" class="theme-toggle">🌙</button>
+    <div class="topnav-right">
+      <button id="theme-toggle" class="theme-toggle" title="toggle theme">🌙</button>
       <a href="https://tally.so/r/aQ5WZ2">Request</a>
       <a href="#" id="changelog-btn">Changelog</a>
-      <span id="last-updated" style="font-size:0.75rem;">last updated: loading…</span>
+      <span id="last-updated" style="font-size: 0.75rem; color: var(--text-muted);">last updated: loading…</span>
     </div>
   </nav>
 </header>
 
+<!-- Announcement Banner -->
+<div id="announcement-banner" class="announcement-banner" style="display: none;">
+  <div class="announcement-content">
+    <img id="announcement-icon" class="announcement-icon" src="" alt="" style="display:none;">
+    <div class="announcement-text">
+      <h3 id="announcement-title" class="announcement-title"></h3>
+      <p id="announcement-message" class="announcement-message"></p>
+    </div>
+  </div>
+  <button id="announcement-dismiss" class="announcement-dismiss"></button>
+</div>
+
+<!-- Main Content -->
 <main>
   <section class="hero-section">
     <h1 class="title">druskii128</h1>
-    <p id="hero-text">loading...</p>
-    <div class="presence-indicator">
+    <p id="hero-text" class="hero-text">loading...</p>
+    <div class="presence-indicator" id="presence-indicator">
       <span class="presence-dot"></span>
-      <span>👤 <span id="online-count">0 online</span></span>
-      <span style="margin-left:8px;color:var(--color-in-game);">0 in game</span>
+      <span class="presence-icon">👤</span>
+      <span id="online-count">0 online</span>
+      <span id="ingame-count">0 in game</span>
+      <button id="online-info-btn" title="view other users">more</button>
     </div>
   </section>
 
-  <h2 class="text-center">Trending Games</h2>
-  <div id="trending-games" class="flex-container"></div>
+  <!-- Online Users Modal -->
+  <div id="online-users-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <button id="close-modal-btn">✕</button>
+      <h3 class="modal-header-title">Users Online</h3>
+      <div id="users-list">loading users...</div>
+    </div>
+  </div>
 
-  <h2 class="text-center">All Games</h2>
-  <div id="all-games" class="flex-container"></div>
+  <!-- Game Sections -->
+  <section>
+    <h2 class="text-center">Recently Played</h2>
+    <div id="recently-played-container" class="flex-container"></div>
+
+    <h2 class="text-center">Trending Games</h2>
+    <div id="trending-games" class="flex-container"></div>
+
+    <h2 class="text-center">All Games</h2>
+    <div id="all-games" class="flex-container"></div>
+
+    <h2 class="text-center">Papa's Games</h2>
+    <div id="papas-games-container" class="flex-container"></div>
+  </section>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay"></div>
+  <div class="loading-spinner" id="loading-spinner"></div>
+
+  <!-- Changelog Modal -->
+  <div id="changelog-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Changelog</h2>
+        <span class="modal-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div id="changelog-list">loading changelog...</div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
-<footer>
-  <a href="privacy-policy.html">Privacy Policy</a>
-  <a href="terms-of-service.html">Terms of Service</a>
-  <a href="about.html">About</a>
-  <a href="https://forms.gle/eRT37jLokfETBNUs6" target="_blank">Contact</a>
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="about.html">About</a>
+      <a href="https://forms.gle/eRT37jLokfETBNUs6" target="_blank" rel="noopener noreferrer">Contact</a>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 druskii128. All rights reserved.
+    </div>
+  </div>
 </footer>
-
-<script>
-  // Theme Toggle
-  const toggleBtn = document.getElementById('theme-toggle');
-  toggleBtn.addEventListener('click', () => {
-    document.body.dataset.theme = document.body.dataset.theme === 'light' ? 'dark' : 'light';
-    toggleBtn.textContent = document.body.dataset.theme === 'light' ? '🌙' : '☀️';
-  });
-</script>
 
 </body>
 </html>
