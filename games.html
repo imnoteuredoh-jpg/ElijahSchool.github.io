@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elijah Games - Play Free Online Games</title>
+    <style>
+        /* Classic 2010s aesthetic: Dark gradients and rounded corners */
+        body {
+            background-color: #1a1a1a;
+            color: #eeeeee;
+            font-family: "Lucida Sans", "Lucida Grande", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #444, #222);
+            padding: 20px;
+            border-bottom: 3px solid #ffcc00;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px #000;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .container {
+            width: 900px;
+            margin: 20px auto;
+            background-color: #262626;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+
+        .game-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        /* The Classic Game Card */
+        .game-card {
+            width: 160px;
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            border-color: #ffcc00;
+            transform: scale(1.05);
+            background: #444;
+        }
+
+        .game-card img {
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            border: 2px solid #000;
+            border-radius: 3px;
+        }
+
+        .game-card p {
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #ddd;
+            height: 32px;
+            overflow: hidden;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin-top: 50px;
+            padding-bottom: 20px;
+        }
+
+        .sidebar-ad {
+            background: #111;
+            color: #444;
+            padding: 10px;
+            text-align: center;
+            border: 1px dashed #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Elijah Games</h1>
+</header>
+
+<nav>
+    <a href="#">HOME</a> | <a href="#">ACTION</a> | <a href="#">PUZZLE</a> | <a href="#">HORROR</a> | <a href="#">MULTIPLAYER</a>
+</nav>
+
+<div class="container">
+    <div class="sidebar-ad">ADVERTISEMENT - SUPPORT THE SITE</div>
+    
+    <h2>Newest Games</h2>
+    <hr color="#444">
+    
+    <div class="game-grid">
+        <div class="game-card">
+            <a href="projects/fnaf-2/index.html" style="text-decoration: none;">
+                <img src="projects/fnaf-2/fnaf-2.jpg" alt="Five Nights At Freddys 2">
+                <p>Five Nights At Freddys 2</p>
+            </a>
+        </div>
+
+        <div class="game-card" style="opacity: 0.5;">
+            <div style="width: 140px; height: 100px; background: #222; margin: auto;"></div>
+            <p>Coming Soon...</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2010 Elijah Games - Created with passion for gamers.
+</footer>
+
+</body>
+</html>
