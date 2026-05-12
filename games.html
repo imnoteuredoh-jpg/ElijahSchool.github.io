@@ -17,6 +17,41 @@
             color: #eee;
         }
 
+        /* NEW BANNER HERE */
+        .request-banner {
+            background: #00d4ff;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-family: 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 15px rgba(0, 212, 255, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .request-banner a {
+            color: #000;
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+
+        .request-banner a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        .request-banner { animation: pulse 2s infinite; }
+
         header {
             /* The blue thing */
             background: linear-gradient(to bottom, #222 0%, #111 50%, #000 50%, #111 100%);
@@ -159,6 +194,10 @@
 </head>
 <body>
 
+<div class="request-banner">
+    WANNA REQUEST A GAME? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdFMRgfhakYWW1xZWnqQgwcg0sbxiCFNsC4lPCXsjr97p57sA/viewform?usp=header" target="_blank">CLICK HERE TO OPEN THE FORM</a>
+</div>
+
 <header>
     <h1>Elijah Games</h1>
 </header>
@@ -185,7 +224,6 @@
             </a>
         </div>
         
-        <div class="game-grid">
         <div class="game-card">
             <a href="projects/Granny/Granny.html" style="text-decoration: none;">
                 <img src="projects/Granny/granny.png" alt="grane">
